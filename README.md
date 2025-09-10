@@ -1,3 +1,41 @@
+# 部署 Github Pages 
+
+## 1. 安装 gh-pages
+    npm install gh-pages --save-dev
+    
+    如果失败，切换官方镜像源或者其他的
+    npm config set registry https://registry.npmjs.org/
+    npm config set registry https://registry.npm.taobao.org/
+    
+    如果安装失败，可以尝试使用 cnpm 安装
+    npm install -g cnpm --registry=https://registry.npm.taobao.org
+    cnpm install gh-pages --save-dev
+    
+## 2. 修改 package.json
+    
+    "homepage": "https://<username>.github.io/<repository-name>",
+    "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+    },
+    
+## 3. 部署
+    npm run deploy  
+    操作后，会生成一个分支 gh-pages，里面就是编译好的文件，然后就可以在浏览器中访问了。
+    
+    https://<username>.github.io/<repository-name>
+    一般10分钟左右就可以访问了。
+## 4. 常见问题
+    1. 404
+        1. 请检查是否在 package.json 中配置了 homepage
+        2. 请检查是否在 package.json 中配置了正确的 scripts.deploy
+        3. 请检查是否在 package.json 中配置了正确的 scripts.predeploy
+    2. 显示了Readme.md
+        1. 请检查是否在 package.json 中配置了正确的 scripts.deploy
+        2. 请检查是否在 package.json 中配置了正确的 scripts.predeploy
+        3. 请检查是否在 package.json 中配置了正确的 homepage
+        4. 在 Settings Page 下面 检查是否配置了正确的 branch
+     
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
